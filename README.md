@@ -29,9 +29,11 @@ docker exec -it http sh -c 'HOST=localhost node --experimental-modules .'
 
 Удобно проводить эксперимент, открыв терминалы в двух панелях
 
+![alt scheme](panels.png "Начало работы")
 
 и наблюдая за вкладкой Network
 
+![alt scheme](101.png "Начало работы")
 
 ---
 
