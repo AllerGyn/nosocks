@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  ws:
+    image: node:alpine
+    ports:
+      - 3333:3333
+    command: sh -c 'apk update && apk add curl nano zip && curl -SLO kodaktor.ru/ws.zip && unzip ws.zip && node --experimental-modules .'
+  http:
+    image: node:alpine
+    ports:
+      - 4444:4444
+    environment:
+      HOST: 92.53.66.193
+    command: sh -c 'apk update && apk add curl && curl -SLO kodaktor.ru/purehttp/index.mjs && node --experimental-modules .'
