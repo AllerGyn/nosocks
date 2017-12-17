@@ -18,7 +18,7 @@ https://kodaktor.ru/sse_demo
 
 Во-вторых, у нас есть middleware, которое обслуживает указанные выше два серверных маршрута.
 
-```
+```JavaScript
  let conns = [];
  let sse = (r, res, next) => {
    res.sseSetup = () => res.writeHead(200, {
@@ -34,7 +34,7 @@ https://kodaktor.ru/sse_demo
  
  И наконец вот сами обработчики маршрутов:
  
- ```
+ ```JavaScript
  router
       .route('/sse_source')
        .get( sse, r=>{
