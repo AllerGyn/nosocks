@@ -1,9 +1,19 @@
-require(`net`)
-  .createServer(socket=>{
-   // Событие data обрабатывается при считывании новых данных
-      socket.on(`data`, data => 
-         /* Данные возвращаются в виде эха обратно клиенту */
-         socket.write(data)
-      );
-})
-  .listen(2222);
+const s = require('ws').Server;
+const clients = [];
+(new s({
+  port: 2222
+}))
+ .on('connection', ws=> {
+   let id = Math.random();
+   clients[id] = ws;
+   ws
+    .on('message', message=> {
+      Object.values(clients).forEach(client => client.send(message));
+      if (message=='quit') {
+        process.nextTick( ()=>{throw new Error('Quitting!');} );
+      }
+   })
+    .on('close', ()=>{
+      delete clients[id];
+   });
+});
