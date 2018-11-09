@@ -1,40 +1,42 @@
 # nosocks
 
-Вот примитивный пример работы с веб-сокетами отдельно от HTTP.
+Клиентский код для https://kodaktor.ru/g/websockets_lab 
 
-У нас, конечно, должна быть веб-страница, содержащая JavaScript-сценарий. Т.е. она должна откуда-то взяться, и её может давать отдельный веб-сервер. Можно использовать готового клиента: https://kodaktor.ru/g/wsclient
-
-Самое главное там - это 
-
-```JavaScript
-let socket = new WebSocket('ws://localhost:2222');
+```HTML
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Chat Form</title>
+   <meta charset="utf-8"><style>* {font-family:sans-serif} span {position:fixed; right:20px; top:10px;border:double; padding: 15px; border-radius:20px;}</style>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>{
+     const url1 = 'ws://localhost:2222';
+     const url2 = 'ws://3336.kodaktor.ru'; // не работает
+     const url3 = 'ws://kodaktor.ru:3336';
+     let socket = new WebSocket(url3);
+  
+     socket.onopen = () => {
+       console.log('connected');
+     };
+     socket.onclose = () => {
+       console.log('closed');
+     };
+     socket.onmessage = event => {
+       $('ul').append  (`<li>${  $( $.parseHTML(event.data) ).text()      }</li>`);
+     };
+	 
+     $(()=>{
+        $('#b').on('click', ()=>{ 
+			  socket.send( $('#i').val()  );
+        });
+     });
+ }</script>
+ </head>
+ <body>
+    <h1>Содержимое чата:</h1>
+    <ul></ul>
+    <span><h2>Введите реплику:</h2>
+      <input id="i"><button id="b">Написать!</button></span>
+ </body>
+</html>
 ```
-
-После создания сокета можно слушать события и отправлять сообщения:
-```JavaScript
-socket.onopen = () => {};
-socket.onclose = () => {};
-socket.onmessage = event => {};
-socket.send()
-```
-
-Этот код использует встроенное примитивное API для веб-сокетов, без всяких библиотек.
-
-
-Как же работает серверная часть?
-
-```
-yarn init -y
-yarn ad ws
-```
-
-Там используется примитивная библиотека ws.
-Код приложения см. здесь и https://kodaktor.ru/g/purews
-
-Приложение будет обслуживать веб-сокетный порт 2222 на локалхосте.
-
-Перейдите по адресу https://kodaktor.ru/g/wsclient в двух окнах браузера (обычном режиме и инкогнито) и убедитесь в том, что чат работает в обоих окнах.
-
-Это происходит благодаря тому, что в открытом окне в браузере нет никаких проблем с обращением к localhost:2222 на данном компьютере. Естественно, посещение этого адреса на другом компьютере не приведёт к указанному эффекту.
-
-Далее см. ветки step*
