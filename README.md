@@ -1,6 +1,6 @@
 # nosocks
 
-Клиентский код для https://kodaktor.ru/g/websockets_lab 
+Клиентский код для https://kodaktor.ru/g/websockets_lab (продублирован: https://kodaktor.ru/g/purews)
 
 ```HTML
 <!DOCTYPE html>
