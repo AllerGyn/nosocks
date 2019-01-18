@@ -1,5 +1,7 @@
 # эксперимент
  
+```git clone -b leftright https://github.com/GossJS/nosocks.git x && cd x```
+
 Смоделируем работу сервера веб-сокетов и клиента.
 
 Создадим два окна терминала, в которых запустим node REPL.
