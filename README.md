@@ -18,7 +18,7 @@
 
 conn – это ассоциативный массив, в котором ключ – сокет, а значение – дата создания.
 
-```JavaSscript
+```JavaScript
 for (let i of conns.keys()) 
     i.on('message', d=>console.log(d))
 ```
