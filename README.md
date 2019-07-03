@@ -10,10 +10,8 @@
    <meta charset="utf-8"><style>* {font-family:sans-serif} span {position:fixed; right:20px; top:10px;border:double; padding: 15px; border-radius:20px;}</style>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script>{
-     const url1 = 'ws://localhost:2222';
-     const url2 = 'ws://3336.kodaktor.ru'; // не работает
-     const url3 = 'ws://kodaktor.ru:3336';
-     let socket = new WebSocket(url3);
+     const URL = 'ws://kodaktor.ru:3333';
+     let socket = new WebSocket(URL);
   
      socket.onopen = () => {
        console.log('connected');
