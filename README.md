@@ -1,6 +1,6 @@
 # nosocks
 
-Клиентский код для https://kodaktor.ru/g/websockets_lab (продублирован: https://kodaktor.ru/g/purews)
+Клиентский код для https://kodaktor.ru/g/websockets_lab 
 
 ```HTML
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
    <meta charset="utf-8"><style>* {font-family:sans-serif} span {position:fixed; right:20px; top:10px;border:double; padding: 15px; border-radius:20px;}</style>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script>{
-     const URL = 'ws://kodaktor.ru:3333';
+     const URL = 'ws://3333.kodaktor.ru';
      let socket = new WebSocket(URL);
   
      socket.onopen = () => {
